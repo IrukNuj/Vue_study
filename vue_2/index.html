@@ -8,31 +8,28 @@
 <body>
 <div id="app">
 
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
-    </svg>
-    <input type="range" min="0" max="100" v-model="radius">
 
-    <p>{{ count }}階クリック〜</p>
-    <button v-on:click="increment">huyasu</button>
-    https://qph.fs.quoracdn.net/main-qimg-b13a06c817d49f236f61a27dc2f7e9dc
-    http://cdn40.picsart.com/181584541001202.gif
+    <ul>
+        <li v-for="(item, index) in list" v-bind:key="item.id" v-bind:class="{tuyoi: item.hp > 300}">
+            ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+            <span v-if=" item.hp > 300 ">tuyoi</span>
+            <span v-if=" item.hp < 50 ">hinshi</span>
+            <button v-on:click="doRemove(index)">削除</button>
+            <button v-on:click="doAttack(index)">攻撃</button>
+        </li>
+    </ul>
 
+    <p ref="test"></p>
 
-    <p>{{ message }}</p>
-    <p>{{ textColor }}</p>
+    <span v-for="item in 15">{{item}}</span>
 
-    <input v-model="textColor">
-    <input v-model="item.src">
+    <button v-on:click="doFilter">filter</button>
 
-    <p v-bind:class="{ child: isChild, 'is-active': isActive }" class="item">
-        動的なクラス
-    </p>
-    <p v-bind:style="{ color: textColor, backgroundColor: bgColor }" class="item">
-        動的なスタイル
-    </p>
+    名前:<input v-model="name">
+    <button v-on:click="doadd">モンスター追加</button>
 
-    <img v-bind="item">
+    <pre> {{$data}} </pre>
+
 
 </div>
 
