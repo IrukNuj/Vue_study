@@ -1,4 +1,4 @@
-var scroll = new SmoothScroll()
+var scroll = new SmoothScroll();
 new Vue({
     el: '#app',
     methods: {
@@ -6,5 +6,4 @@ new Vue({
             scroll.animateScroll(0)
         }
     }
-    }
-)
+})
