@@ -9,18 +9,12 @@
 
 <!-- スクロール用のらいぶらり -->
 <div id="app">
-    {{ topics }}
 
-    <select v-model="current">
-        <option v-for="topic in topics" v-bind:value="topic.value">
-            {{ topic.name }}
-        </option>
-    </select>
-    <div v-for="item in list">
-        <a v-bind:href="item.html_url">
-            <p>{{ item.full_name }}</p>
-        </a>
-    </div>
+    <button v-on:click="list.push(list.length+1)">追加</button>
+    <ul ref="list">
+        <li v-for="item in list">{{ item }}</li>
+    </ul>
+
 
 </div>
 

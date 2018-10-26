@@ -1,24 +1,16 @@
 new Vue({
     el: '#app',
     data: {
-        list: [],
-        current: '',
-        topics: [
-            { value: 'IrukNuj', name: 'Iruk' },
-            { value: 'jQuery', name: 'jQuery' }
-        ]
+        list: []
     },
     watch: {
-        current: function (val) {
-            // GitHubのAPIからトピックのリポジトリを検索
-            axios.get('https://api.github.com/search/repositories', {
-                params: {
-                    // q: 'topic:' + val
-                    q: 'user:' + val
-                }
-            }).then(function (response) {
-                this.list = response.data.items
-            }.bind(this))
+        list: function () {
+            // 更新後のul要素の高さを取得できない…
+            console.log('通常:', this.$refs.list.offsetHeight)
+            // nextTickを使えばできる！
+            this.$nextTick(function () {
+                console.log('nextTick:', this.$refs.list.offsetHeight)
+            })
         }
-    },
+    }
 })
