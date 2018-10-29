@@ -1,19 +1,29 @@
-var bus = new Vue()
-
-bus.$emit('bus-event')
-
-
-
-Vue.component('comp-child', {
-    template: '<li>{{ name }} HP,{{ hp }}<button v-on:click="doAttack">攻撃する</button></li>',
+Vue.component('my-component',{
+    template: '<div class="my-component">' +
+        '<p>name: {{ name }} HP: {{ hp }}</p>' +
+        '<p>name: <input v-model="localName"></p>' +
+        '<p>HP <input size="5" v-model.number="localHp"></p>' +
+        '</div>',
     props: {
-        id: Number,
         name: String,
         hp: Number
     },
-    methods: {
-        doAttack: function(){
-            this.$emit('attack',this.id)
+    computed: {
+        localName: {
+            get: function() {
+                return this.name
+            },
+            set: function(val) {
+                this.$emit('update:name',val)
+            }
+        },
+        localHp: {
+            get: function () {
+                return this.hp
+            },
+            set: function (val) {
+                this.$emit('update:hp', val)
+            }
         }
     }
 })
@@ -21,21 +31,7 @@ Vue.component('comp-child', {
 new Vue({
     el: '#app',
     data: {
-        list: [
-            { id: 1, name: 'スライム', hp: 100 },
-            { id: 2, name: 'ゴブリン', hp: 200 },
-            { id: 3, name: 'ドラゴン', hp: 500 }
-        ]
-    },
-    methods: {
-        // attackが発生した！
-        handleAttack: function (id) {
-            // 引数のIDから要素を検索
-            var item = this.list.find(function (el) {
-                return el.id === id
-            })
-            // HPが0より多ければ10減らす
-            if (item !== undefined && item.hp > 0) item.hp -= 10
-        }
+        name: 'スライム',
+        hp: 100
     }
 })

@@ -9,12 +9,7 @@
 
 <div id="app">
 
-    <ul>
-        <comp-child v-for="item in list"
-                    v-bind:key="item.id"
-                    v-bind="item"
-                    v-on:attack="handleAttack"></comp-child>
-    </ul>
+    <my-component v-bind:name.sync="name" v-bind:hp.sync="hp"></my-component>
 
 </div>
 
