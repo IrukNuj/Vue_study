@@ -12,6 +12,7 @@
       <p><router-link :to="{ name: 'Home', params: { id: 1 } }">aaa</router-link></p>
       <p><router-link :to="{ name: 'Home', query: { id: 1 } }">aaa</router-link></p>
 
+      <p><router-link :to="{ path: '/Product/1' }">product/1</router-link></p>
     </nav>
     <img src="./assets/logo.png">
     <router-view/>
