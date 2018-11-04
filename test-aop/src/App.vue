@@ -5,7 +5,7 @@
     <p>hogehoge</p>
   </div>
 </template>
-
+6
 <script>
 import store from './store'
 import EditForm from './components/EditForm'
